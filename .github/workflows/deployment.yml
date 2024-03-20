@@ -1,7 +1,17 @@
 name: Deploy Project
 on: push
 jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get code
+        uses: actions/checkout@v4
+      - name: Install dependencies
+        run: npm ci
+      - name: Run lint
+        run: npm run lint
   test:
+    needs: lint
     runs-on: ubuntu-latest
     steps:
       - name: Get code
