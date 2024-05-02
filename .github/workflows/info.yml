@@ -10,6 +10,6 @@ jobs:
     steps:
       - name: Get tag name
         id: get_tag_name
-        run: echo "::set-output name=tag_name::${GITHUB_REF#refs/tags/}"
+        run: echo "TAG_NAME=${GITHUB_REF#refs/tags/}" >> $GITHUB_ENV
       - name: Output release tag
-        run: echo "${{ steps.get_tag_name.outputs.tag_name }}"
+        run: echo  "$TAG_NAME"
