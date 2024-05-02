@@ -1,8 +1,12 @@
-name: Issue info
-on: issues
+name: Output info
+on:
+  push:
+  release:
+    types: [published]
 jobs:
-  issue-info:
+  info:
+    if: github.event_name == 'release'
     runs-on: ubuntu-latest
     steps:
-      - name: Output Issue Info
-        run: echo "${{toJson(github.event.issue)}}"
+      - name: Output GitHub context
+        run: echo "${{ github.ref }}"
